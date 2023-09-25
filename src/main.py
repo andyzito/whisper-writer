@@ -83,8 +83,7 @@ def on_shortcut():
     transcribed_text = recording_thread.result
 
     if transcribed_text:
-        script_path = os.join(os.getcwd(), "..", "assistant", "assist.py")
-        script_path = r"\~\gptfiddle\assistant\assist.py"
+        script_path = os.path.join(os.getcwd(), "..", "assistant", "assist.py")
 
         command = ["python", script_path, transcribed_text, '--speak']
 
