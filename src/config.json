@@ -8,15 +8,15 @@
     },
     "local_model_options": {
         "model": "base",
-        "device": null,
+        "device": "cpu",
         "language": null,
         "temperature": 0.0,
-        "initial_prompt": null,
+        "initial_prompt": "Please remember to use punctuation. Transcribe exactly what I say as close as you can.",
         "condition_on_previous_text": true,
         "verbose": false
     },
     "activation_key": "ctrl+alt+space",
-    "silence_duration": 900,
+    "silence_duration": 1000,
     "writing_key_press_delay": 0.005,
     "remove_trailing_period": false,
     "add_trailing_space": true,

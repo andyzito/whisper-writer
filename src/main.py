@@ -6,6 +6,7 @@ import keyboard
 import pyautogui
 from transcription import record_and_transcribe
 from status_window import StatusWindow
+import subprocess
 
 class ResultThread(threading.Thread):
     def __init__(self, *args, **kwargs):
@@ -15,7 +16,7 @@ class ResultThread(threading.Thread):
 
     def run(self):
         self.result = self._target(*self._args, cancel_flag=lambda: self.stop_transcription, **self._kwargs)
-        
+
     def stop(self):
         self.stop_transcription = True
 
@@ -73,7 +74,7 @@ def on_shortcut():
     status_window.recording_thread = recording_thread
     status_window.start()
     recording_thread.start()
-    
+
     recording_thread.join()
 
     if status_window.is_alive():
@@ -82,7 +83,13 @@ def on_shortcut():
     transcribed_text = recording_thread.result
 
     if transcribed_text:
-        pyautogui.write(transcribed_text, interval=config['writing_key_press_delay'])
+        script_path = os.join(os.getcwd(), "..", "assistant", "assist.py")
+        script_path = r"\~\gptfiddle\assistant\assist.py"
+
+        command = ["python", script_path, transcribed_text, '--speak']
+
+        # Run the command
+        subprocess.run(command)
 
 def format_keystrokes(key_string):
     return '+'.join(word.capitalize() for word in key_string.split('+'))
