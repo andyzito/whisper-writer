@@ -84,8 +84,9 @@ def on_shortcut():
 
     if transcribed_text:
         script_path = os.path.join(os.getcwd(), "..", "assistant", "assist.py")
+        python_path = os.path.join(os.getcwd(), "..", "venv", "Scripts", "python.exe")
 
-        command = ["python", script_path, transcribed_text, '--speak']
+        command = [python_path, script_path, transcribed_text, '--speak']
 
         # Run the command
         subprocess.run(command)
